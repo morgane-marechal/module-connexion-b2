@@ -1,7 +1,5 @@
 <?php
-
-
-
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +15,8 @@
 </head>
 
 <body>
+    <?php require('header.php');?>
+
     <h1>Connectez-vous !</h1>
 
 

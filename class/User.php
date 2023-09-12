@@ -2,11 +2,14 @@
 
 class User{
 
-    private $db;
+    private $db = 'NULL';
 
     public function __construct()
     {
-        $this->db = new PDO('mysql:host=127.0.0.1;dbname=moduleconnexionb2', 'root', '');
+        $db = new PDO('mysql:host=127.0.0.1;dbname=moduleconnexionb2', 'root', '');
+        $this->db = $db;
+        // $db->setAttribute(PDO::ATTR_ERRMODE);
+        // return $db;
 
     }
 

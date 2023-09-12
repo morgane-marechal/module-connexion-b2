@@ -1,5 +1,8 @@
-<!DOCTYPE html>
+<?php
+    session_start();
+?>
 
+<!DOCTYPE html>
 
 <head>
     <meta charset="utf-8"/>
@@ -11,16 +14,14 @@
 </head>
 
 <body>
+<?php require('header.php');?>
+
 <?php
 
-
-require('class/User.php');
-$object = new User();
-$list=$object->getAll();
-var_dump($list);
-
-
-
+    require('class/User.php');
+    $object = new User();
+    $list=$object->getAll();
+    var_dump($list);
 
 ?>
 </body>
