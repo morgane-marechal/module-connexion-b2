@@ -1,8 +1,7 @@
 <?php
-
-
-
+    session_start();
 ?>
+
 
 <!DOCTYPE html>
 
@@ -17,28 +16,37 @@
 </head>
 
 <body>
+    <?php require('header.php');?>
+
+    <?php
+        require('class/User.php');
+        $object = new User();
+        $id=$_SESSION["id"];
+        $list=$object->getUserInfo($id);
+        //var_dump($list);
+    ?>
     <h1>Votre profil</h1>
 
     <form id="form-profil" action="" method="post" class="module-form">
         <div class="module-form">
             <label for="login">Changer de login : </label>
-            <input type="text" name="login" id="login" required />
+            <input type="text" name="login" id="login" value=<?= $list[0]['login']; ?> />
         </div>
         <div class="module-form">
             <label for="lastname">Changer de nom : </label>
-            <input type="text" name="lastname" id="lastname" required />
+            <input type="text" name="lastname" id="lastname"  value=<?= $list[0]['lastname']; ?> />
         </div>
         <div class="module-form">
             <label for="firstname">Changer de prénom : </label>
-            <input type="text" name="firstname" id="firstname" required />
+            <input type="text" name="firstname" id="firstname"  value=<?= $list[0]['firstname']; ?> />
         </div>
         <div class="module-form">
             <label for="password">Changer de Mot de passe: </label>
-            <input type="password" name="password" id="password" required />
+            <input type="password" name="password" id="password"  value=<?= $list[0]['password']; ?> />
         </div>
         <div class="module-form">
             <label for="password">Vérifier le nouveau mot de passe: </label>
-            <input type="password" name="password-check" id="password-check" required />
+            <input type="password" name="password-check" id="password-check" value=<?= $list[0]['password']; ?> />
         </div>
         <div class="module-form">
             <input type="submit" value="Soumettre" />

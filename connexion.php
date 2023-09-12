@@ -34,5 +34,17 @@
         </div>
     </form>
 
+    <?php
+        require('class/User.php');
+        $login=$_POST['login'];
+        $password=$_POST['password'];
+
+       if((isset($login))&&(isset($password))){
+        $newLog = new User();
+        $newLog->connexion($login, $password);
+        header("Location: index.php");
+    }
+    ?>
+
 </body>
 </html>

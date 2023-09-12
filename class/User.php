@@ -54,6 +54,25 @@ class User{
         return $result;
     }
 
+    public function getUserInfo($id){
+        $displayUser = $this->db->prepare("SELECT * FROM user WHERE id = :id");
+        $displayUser->execute([
+            'id' => $id,
+        ]);
+        $result = $displayUser->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function getId($login){
+
+        $displayUsers = $this->db->prepare("SELECT * FROM user WHERE login = :login");
+        $displayUsers->execute([
+            'login' => $login,
+        ]);
+        $result = $displayUsers->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     // public function hello(){
     //     return "hello new user ! How are you ?";
     // }
@@ -88,7 +107,9 @@ class User{
             ]);
             $results = $sql_exe->fetch(PDO::FETCH_ASSOC);
             if ($results) {
-                return $_SESSION["login"]=$login;
+                $getId=$this->getId($login);
+                $_SESSION["id"]=$getId[0]["id"];
+                $_SESSION["login"]=$login;
             } else {
                 return false;
             }

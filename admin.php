@@ -17,12 +17,10 @@
 <?php require('header.php');?>
 
 <?php
-
     require('class/User.php');
     $object = new User();
     $list=$object->getAll();
     var_dump($list);
-
 ?>
 </body>
 </html>
