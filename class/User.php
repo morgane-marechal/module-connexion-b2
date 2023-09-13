@@ -8,24 +8,11 @@ class User{
     {
         $db = new PDO('mysql:host=127.0.0.1;dbname=moduleconnexionb2', 'root', '');
         $this->db = $db;
-        // $db->setAttribute(PDO::ATTR_ERRMODE);
-        // return $db;
-
     }
 
 
     public function register($login, $prenom, $nom, $password){
         if (!$this->verifUser($login)) {
-            /*
-            try
-            {
-                $bdd = new PDO('mysql:host=127.0.0.1;dbname=moduleconnexionb2', 'root', '');
-            }
-            catch (PDOException $e)
-            {
-                echo 'Echec de la connexion : ' . $e->getMessage();
-            }*/
-
                 $sql = "INSERT INTO user (login, firstname, lastname, password)
                         VALUES (:login, :prenom, :nom, :password)";
                 $sql_exe = $this->db->prepare($sql);
@@ -44,6 +31,44 @@ class User{
                 return json_encode(['response' => 'not ok', 'echoue' => 'L\'utilisateur existe déjà']);
             }
         }
+
+
+
+    public function verifUser($login){
+        $sql = "SELECT * 
+                FROM user
+                WHERE login = :login";
+        $sql_exe = $this->db->prepare($sql);
+        $sql_exe->execute([
+            'login' => $login,
+        ]);
+        $results = $sql_exe->fetch(PDO::FETCH_ASSOC);
+        if ($results) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function connexion($login, $password){
+
+            $sql = "SELECT * 
+                    FROM user
+                    WHERE login = :login AND password = :password";
+            $sql_exe = $this->db->prepare($sql);
+            $sql_exe->execute([
+                'login' => $login,
+                'password' => $password
+            ]);
+            $results = $sql_exe->fetch(PDO::FETCH_ASSOC);
+            if ($results) {
+                $getId=$this->getId($login);
+                $_SESSION["id"]=$getId[0]["id"];
+                $_SESSION["login"]=$login;
+            } else {
+                return false;
+            }
+    }
 
     public function getAll(){
 
@@ -73,52 +98,51 @@ class User{
         return $result;
     }
 
-    // public function hello(){
-    //     return "hello new user ! How are you ?";
-    // }
-
-
-
-    public function verifUser($login){
-            $sql = "SELECT * 
-                    FROM user
-                    WHERE login = :login";
-            $sql_exe = $this->db->prepare($sql);
-            $sql_exe->execute([
-                'login' => $login,
-            ]);
-            $results = $sql_exe->fetch(PDO::FETCH_ASSOC);
-            if ($results) {
-                return true;
-            } else {
-                return false;
-            }
+    public function setLogin($id, $login){
+        $setLogin = $this->db->prepare("UPDATE user SET login = :login WHERE id = :id");
+        $setLogin->execute([
+            'id' => $id,
+            'login' => $login,
+        ]);
+        if ($setLogin) {
+            return json_encode(['response' => 'ok', 'reussite' => 'Mise à jour du login réussie.']);
+        }
     }
 
-    public function connexion($login, $password){
-
-            $sql = "SELECT * 
-                    FROM user
-                    WHERE login = :login AND password = :password";
-            $sql_exe = $this->db->prepare($sql);
-            $sql_exe->execute([
-                'login' => $login,
-                'password' => $password
-            ]);
-            $results = $sql_exe->fetch(PDO::FETCH_ASSOC);
-            if ($results) {
-                $getId=$this->getId($login);
-                $_SESSION["id"]=$getId[0]["id"];
-                $_SESSION["login"]=$login;
-            } else {
-                return false;
-            }
+    public function setFirstname($id, $firstname){
+        $setFirstname = $this->db->prepare("UPDATE user SET firstname = :firstname WHERE id = :id");
+        $setFirstname->execute([
+            'id' => $id,
+            'firstname' => $firstname,
+        ]);
+        if ($setFirstname) {
+            return json_encode(['response' => 'ok', 'reussite' => 'Mise à jour du prénom réussie.']);
+        }
     }
 
-
-
-
+    public function setLastname($id, $lastname){
+        $setLastname = $this->db->prepare("UPDATE user SET lastname = :lastname WHERE id = :id");
+        $setLastname->execute([
+            'id' => $id,
+            'lastname' => $lastname,
+        ]);
+        if ($setLastname) {
+            return json_encode(['response' => 'ok', 'reussite' => 'Mise à jour du nom réussie.']);
+        }
     }
+
+    public function setPassword($id, $password){
+        $setPassword = $this->db->prepare("UPDATE user SET password = :password WHERE id = :id");
+        $setPassword->execute([
+            'id' => $id,
+            'password' => $password,
+        ]);
+        if ($setPassword) {
+            return json_encode(['response' => 'ok', 'reussite' => 'Mise à jour du mot de passe réussie.']);
+        }
+    }
+
+}
     
  
 

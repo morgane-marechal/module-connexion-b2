@@ -14,10 +14,11 @@
                 <li><a href="admin.php" class="menuLink">Admin</a></li>
             <?php } ?>
 
-            <?php if (isset($_SESSION['id'])){ ?>
+            <?php if ($_SESSION['id']!=null){ ?>
                 <li><a href="profil.php" class="menuLink">Votre compte</a></li>
                 <li><a href="deconnexion.php" class="menuLink">Déconnexion</a></li>
             <?php } ?>
+
 
             </nav>
 
