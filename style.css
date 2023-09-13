@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Cambay:ital,wght@0,400;0,700;1,400&family=Cormorant+SC:wght@400;500;600;700&family=Dosis&family=Oswald:wght@200;300;400;500;600;700&family=Poppins:wght@100;200;300;500&family=Staatliches&display=swap');
 html{
     margin:0;
     padding:0;
+    width:100%;
+    
 }
 
 h1{
+    font-family: 'Dosis', sans-serif;
     text-align: center;
     color: rgb(213, 154, 81);
     font-family: 'Courier New', Courier, monospace;
@@ -14,11 +18,205 @@ body{
     display:flex;
     flex-direction: column;
     align-items: center;
+    width:100%;
 }
 
-form{
 
-    display:flex;
+header{
+    width:100%;
+}
+
+nav {
+    font-family: 'Dosis', sans-serif;
+    display: flex;
+    position: absolute;
+    inset: 0;
+    padding: 3rem;
+    margin: 0;
+    box-sizing: border-box;
     flex-direction: column;
-    margin:1%0%;
+    align-items: center;
+    z-index: 10;
+    background: rgba(0,0,0,0.9);
+}
+
+nav > li:not([role="icon-button"]) {
+    background: none;
+    outline: none;
+    border: none;
+    color: rgb(80, 76, 66);
+    font-size: 1.5rem;
+    line-height: 3rem;
+    margin: 0.5rem 0;
+    list-style-type: none;
+}
+
+nav > li:not([role="icon-button"]) a{
+    color:var(--grad-favorite);
+    text-decoration: none;
+
+
+}
+
+[hidden] {
+    display: none !important;
+}
+
+#menuButton {
+    background: none;
+    color: white;
+    border: 0;
+    font-size: 60px;
+    width: 60px;
+    height: 60px;
+}
+
+#menuButton .material-icons {
+    width: 100%;
+    height: 100%;
+    font-size: 48px;
+}
+
+
+nav > button[role="icon-button"] {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: var(--grad-favorite);
+    font-weight: bold;
+    font-size: 2rem;
+    position: absolute;
+    left: 1rem;
+    z-index: 20;
+}
+
+nav > li[role="icon-button"]:hover {
+    background: white;
+    color: rgb(215, 33, 235);
+}
+
+/* MOBILE FIRST */
+@media (max-width: 460px) {
+
+
+    main{
+        width:100%;
+        font-family: 'Dosis', sans-serif;
+    }
+
+
+
+            /* 
+            ***** MOBILE VERSION FIRST ****
+            */
+
+
+}
+
+
+        /* 
+        *************************
+        ************************
+        *****DESKTOP VERSION ****
+        ************************
+        *************************    
+        */
+
+
+
+@media (min-width: 460px) {
+
+
+
+        
+        nav {
+            display: flex;
+            width:100%;
+            flex-direction: row;
+            height: 54px;
+            position: relative;
+            padding: 0;
+            background: none;
+            margin-bottom: 30px;
+            justify-content: center;
+            border-bottom: 1px solid rgba(241, 153, 45, 0.7);
+        }
+    
+        nav > li:not([role="icon-button"]) {
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--police-title);
+            font-weight: 900;
+            letter-spacing:0.1em;
+            margin-right:2%;    
+        }
+
+
+    
+        nav > button[role="icon-button"] {
+            display: none;
+        }
+        
+        nav > button {
+            padding-left: 20px;
+        }
+
+        #menuButton .material-icons {
+            width: 100%;
+            height: 100%;
+            font-size: 48px;
+            display: none;
+        }
+    
+    
+        button::before{
+            content: "";
+            position: absolute;
+            bottom:0px; 
+            width: 13%;
+            height:2px;
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out; 
+            transform-origin: center;
+        }
+        
+        button:hover::before{
+            transform:scaleX(1);
+        }
+    
+
+        /* HOME PAGE */
+
+    li{
+        list-style-type: none;
+        color: var(--grad-grey);
+    }
+
+    a{
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+    .menulink:hover{
+        text-decoration: none;
+        color: var(--grad-favorite-hover);
+    }
+
+    /* update form css */
+    form{
+
+        display:flex;
+        flex-direction: column;
+        margin:1%0%;
+        padding:20px;
+        /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+        box-shadow: rgba(98, 133, 154, 0.2) 0px 60px 40px -7px;
+    }
+
+
+
+
+
+
 }

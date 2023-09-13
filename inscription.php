@@ -14,6 +14,7 @@
 
     <body>
         <?php require('header.php');?>
+
         <h1>S'inscrire ici</h1>
 
         <form id="form-register" action="" method="post" class="module-form">
@@ -83,7 +84,8 @@
         if((isset($login))&&(isset($lastname))&&(isset($firstname))&&($goodPatternPassword===true)&&($samePasswords===true)){
             $register = new User();
             $register->register($login, $firstname, $lastname, $password);
-            header("Location: connexion.php");
+            json_encode($register);
+            //header("Location: connexion.php");
         }
     }
 

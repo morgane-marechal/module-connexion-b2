@@ -23,12 +23,12 @@ class User{
                     'password' => $password
                 ]);
                 if ($sql_exe) {
-                    return json_encode(['response' => 'ok', 'reussite' => 'Inscription réussie.']);
+                    return true;
                 } else {
-                    return json_encode(['response' => 'not ok', 'echoue' => 'L\'inscription a échoué.']);
+                    return false;
                 }
             } else {
-                return json_encode(['response' => 'not ok', 'echoue' => 'L\'utilisateur existe déjà']);
+                return false;
             }
         }
 
@@ -51,7 +51,6 @@ class User{
     }
 
     public function connexion($login, $password){
-
             $sql = "SELECT * 
                     FROM user
                     WHERE login = :login AND password = :password";
@@ -71,7 +70,6 @@ class User{
     }
 
     public function getAll(){
-
         $displayUsers = $this->db->prepare("SELECT * FROM user");
         $displayUsers->execute([
         ]);
@@ -89,7 +87,6 @@ class User{
     }
 
     public function getId($login){
-
         $displayUsers = $this->db->prepare("SELECT * FROM user WHERE login = :login");
         $displayUsers->execute([
             'login' => $login,
@@ -99,13 +96,19 @@ class User{
     }
 
     public function setLogin($id, $login){
+        if (!$this->verifUser($login)) {
         $setLogin = $this->db->prepare("UPDATE user SET login = :login WHERE id = :id");
         $setLogin->execute([
             'id' => $id,
             'login' => $login,
         ]);
         if ($setLogin) {
-            return json_encode(['response' => 'ok', 'reussite' => 'Mise à jour du login réussie.']);
+            return true;
+        }else{
+            return false;
+        }
+        }else{
+            return false;
         }
     }
 
@@ -116,7 +119,7 @@ class User{
             'firstname' => $firstname,
         ]);
         if ($setFirstname) {
-            return json_encode(['response' => 'ok', 'reussite' => 'Mise à jour du prénom réussie.']);
+            return true;
         }
     }
 
@@ -127,7 +130,7 @@ class User{
             'lastname' => $lastname,
         ]);
         if ($setLastname) {
-            return json_encode(['response' => 'ok', 'reussite' => 'Mise à jour du nom réussie.']);
+            return true;
         }
     }
 
@@ -138,7 +141,7 @@ class User{
             'password' => $password,
         ]);
         if ($setPassword) {
-            return json_encode(['response' => 'ok', 'reussite' => 'Mise à jour du mot de passe réussie.']);
+            return true;
         }
     }
 
