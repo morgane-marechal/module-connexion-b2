@@ -20,7 +20,7 @@
     <h1>Connectez-vous !</h1>
 
 
-    <form id="form-connection" action="" method="post" class="module-form">
+    <form id="form-connexion" action="" method="post" class="module-form">
         <div class="module-form">
             <label for="login">Entrer le login : </label>
             <input type="text" name="login" id="login" required />

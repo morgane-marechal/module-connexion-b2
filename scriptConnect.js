@@ -1,13 +1,13 @@
-console.log("script register form OK");
+console.log("script connect form OK");
 
-let insForm = document.getElementById('form-register');
+let connectForm = document.getElementById('form-connexion');
 
-if (insForm){
-    insForm.addEventListener('submit', async (event) => {
+if (connectForm){
+    connectForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     let form = new FormData(event.target);
 
-    let url = 'inscription.php';
+    let url = 'connexion.php';
 
     let request = new Request(url, {
         method: 'POST',

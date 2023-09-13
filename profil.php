@@ -36,11 +36,10 @@
 
  if($_POST['update-login']){
     $updateLogin=$_POST['update-login'];
-
     echo $updateLogin;
     $newLogin = new User();
-    $newLogin->setLogin($id,$updateLogin);
-    header("Location: profil.php");
+    $success = $newLogin->setLogin($id,$updateLogin);
+    return $success;
 
 }
 
@@ -48,16 +47,16 @@ if($_POST['firstname']){
     //echo "hello update login";
     $firstname=$_POST['firstname'];
     $newFirstname = new User();
-    $newFirstname->setFirstname($id,$firstname);
-    header("Location: profil.php");
+    $success = $newFirstname->setFirstname($id,$firstname);
+    return $success;
 }
 
 if($_POST['lastname']){
     //echo "hello update login";
     $lastname=$_POST['lastname'];
     $newLastname = new User();
-    $newLastname->setLastname($id,$lastname);
-    header("Location: profil.php");
+    $success = $newLastname->setLastname($id,$lastname);
+    return $success;
 }
 
 $password=$_POST['password'];
@@ -81,9 +80,11 @@ if($password===$checkPassword){
 
 if(($goodPatternPassword===true)&&($samePasswords===true)){
     $newPassword = new User();
-    $newPassword->setPassword($id, $password);
-    $messageInfo="Vous avez changé votre mot de passe";
-    header("Location: profil.php");
+    $success = $newPassword->setPassword($id, $password);
+    return $success;
+    
+    // $messageInfo="Vous avez changé votre mot de passe";
+    // header("Location: profil.php");
 }
 
 
@@ -140,6 +141,7 @@ if(($goodPatternPassword===true)&&($samePasswords===true)){
         <?= $messageInfo ?>
     </div>
 
+<script defer src="scriptProfil.js"></script>
 
 
 </body>
