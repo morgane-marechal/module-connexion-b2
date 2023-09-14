@@ -32,8 +32,9 @@
             </div>
             <div class="module-form">
                 <label for="password">Mot de passe: </label>
-                <input type="password" name="password" id="password" required />
                 <p><small>Le mot de passe doit être au minimum de huit caractères, avec une majuscule, un chiffre et un caractère spécial au minimum.</small></p>
+
+                <input type="password" name="password" id="password" required />
             </div>
             <div class="module-form">
                 <label for="password">Vérifier le mot de passe: </label>
