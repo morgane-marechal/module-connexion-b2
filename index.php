@@ -7,7 +7,7 @@
         <link rel="stylesheet" type="text/css" href="style.css" />
             <meta http-equiv="x-ua-compatible" content="IE=edge" />
             <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
-            <title>Home</title>
+            <title>Accueil</title>
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /></head>
 
 <body>

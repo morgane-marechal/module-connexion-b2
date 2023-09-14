@@ -5,12 +5,12 @@
 <!DOCTYPE html>
 
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css"/>
-    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
-    <title>Admin</title>
+<meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+            <meta http-equiv="x-ua-compatible" content="IE=edge" />
+            <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
+            <title>Home</title>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
@@ -28,4 +28,6 @@
     }
 ?>
 </body>
+<script defer src="scriptDesign.js"></script>
+
 </html>

@@ -97,18 +97,20 @@ class User{
 
     public function setLogin($id, $login){
         if (!$this->verifUser($login)) {
-        $setLogin = $this->db->prepare("UPDATE user SET login = :login WHERE id = :id");
+            $setLogin = $this->db->prepare("UPDATE user SET login = :login WHERE id = :id");
+
         $setLogin->execute([
             'id' => $id,
             'login' => $login,
         ]);
-        if ($setLogin) {
-            return true;
+            if ($setLogin) {
+                return json_encode(array("success" => true));
+            }else{
+                return json_encode(array("success" => false));
+            }
         }else{
-            return false;
-        }
-        }else{
-            return false;
+            return json_encode(array("success" => false));
+
         }
     }
 
@@ -119,7 +121,9 @@ class User{
             'firstname' => $firstname,
         ]);
         if ($setFirstname) {
-            return true;
+            return json_encode(array("success" => true));
+        }else{
+            return json_encode(array("success" => false));
         }
     }
 
@@ -130,7 +134,9 @@ class User{
             'lastname' => $lastname,
         ]);
         if ($setLastname) {
-            return true;
+            return json_encode(array("success" => true));
+        }else{
+            return json_encode(array("success" => false));
         }
     }
 
@@ -141,7 +147,9 @@ class User{
             'password' => $password,
         ]);
         if ($setPassword) {
-            return true;
+            return json_encode(array("success" => true));
+        }else{
+            return json_encode(array("success" => false));
         }
     }
 

@@ -1,28 +1,8 @@
 <?php
     session_start();
 ?>
-<!DOCTYPE html>
 
-
-
-
-
-<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css"/>
-    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
-    <title>Profil</title>
-</head>
-
-<body>
-    <?php require('header.php');?>
-
-
-    <h1>Votre profil</h1>
-
-    <?php
+<?php
         require('class/User.php');
         $object = new User();
         $id=$_SESSION["id"];
@@ -33,14 +13,14 @@
     // --------------Traitement logique du formulaire-------------
     // check for elements
 
-
- if($_POST['update-login']){
+/*
+if($_POST['update-login']){
     $updateLogin=$_POST['update-login'];
     echo $updateLogin;
     $newLogin = new User();
     $success = $newLogin->setLogin($id,$updateLogin);
-    return $success;
-
+    // return $success;
+    // die();
 }
 
 if($_POST['firstname']){
@@ -86,10 +66,33 @@ if(($goodPatternPassword===true)&&($samePasswords===true)){
     // $messageInfo="Vous avez changé votre mot de passe";
     // header("Location: profil.php");
 }
+*/
 
 
 
 ?>
+
+<!DOCTYPE html>
+
+
+
+
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+    <title>Profil</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+
+<body>
+    <?php require('header.php');?>
+
+
+    <h1>Votre profil</h1>
+
 
     <form id="form-login" action="profil.php" method="post" class="container-form">
         <div class="module-form">
@@ -97,7 +100,7 @@ if(($goodPatternPassword===true)&&($samePasswords===true)){
             <input type="text" name="update-login" id="login" placeholder="<?= $list[0]['login']; ?>" value="" />
         </div>
         <div class="module-form">
-            <input type="submit" value="Valider nouveau login" />
+            <input type="submit" class="submit" value="Valider nouveau login" />
         </div>
     </form>
 
@@ -107,7 +110,7 @@ if(($goodPatternPassword===true)&&($samePasswords===true)){
             <input type="text" name="lastname" id="lastname"  placeholder="<?= $list[0]['lastname']; ?>" value=""/>
         </div>
         <div class="module-form">
-            <input type="submit" value="Valider nouveau nom" />
+            <input type="submit" class="submit" value="Valider nouveau nom" />
         </div>
     </form>
 
@@ -117,7 +120,7 @@ if(($goodPatternPassword===true)&&($samePasswords===true)){
             <input type="text" name="firstname" id="firstname"  placeholder="<?= $list[0]['firstname']; ?>" value=""/>
         </div>
         <div class="module-form">
-            <input type="submit" value="Valider nouveau prénom" />
+            <input type="submit" class="submit" value="Valider nouveau prénom" />
         </div>
     </form>
 
@@ -125,7 +128,7 @@ if(($goodPatternPassword===true)&&($samePasswords===true)){
         <div class="module-form">
             <label for="password">Changer de Mot de passe: </label>
             <input type="password" name="password" id="password"  placeholder="****" value=""/>
-            <p><small>Minimum de huit caractères, avec une majuscule, un chiffre et un caractère spécial</small></p>
+            <p style="margin: 0px 0px 30px 0px;"><small>Minimum de huit caractères, avec une majuscule, un chiffre et un caractère spécial</small></p>
 
         </div>
         <div class="module-form">
@@ -133,7 +136,7 @@ if(($goodPatternPassword===true)&&($samePasswords===true)){
             <input type="password" name="password-check" id="password-check" placeholder="****" value=""/>
         </div>
         <div class="module-form">
-            <input type="submit" value="Valider le nouveau mot de passe" />
+            <input type="submit" class="submit" value="Valider le nouveau mot de passe" />
         </div>
     </form>
 
@@ -142,6 +145,8 @@ if(($goodPatternPassword===true)&&($samePasswords===true)){
     </div>
 
 <script defer src="scriptProfil.js"></script>
+<script defer src="scriptDesign.js"></script>
+
 
 
 </body>
