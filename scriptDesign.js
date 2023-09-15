@@ -51,3 +51,12 @@ menuButton.addEventListener('click', (event) => {
         navEl.hidden = false;
     } 
 });
+
+window.addEventListener('resize', navReappear);
+
+function navReappear(){
+    if (window.matchMedia("(min-width: 460px)").matches) {
+        console.log("nav nav");
+        navEl.hidden = false;
+    }
+}

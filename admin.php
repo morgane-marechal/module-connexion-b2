@@ -14,19 +14,23 @@
 </head>
 
 <body>
-<?php require('header.php');?>
-
-<?php
-    require('class/User.php');
-    $object = new User();
-    $list=$object->getAll();
-    $sizeList=count($list);
+    <?php require('header.php');?>
+    <main id="admin-bloc">
+            <h1>Liste des utilisateurs de votre site</h1>
 
 
-    for ($i = 0; $i < $sizeList; $i++) {
-        echo $list[$i]["id"]." ".$list[$i]["login"]." ".$list[$i]["firstname"]." ".$list[$i]["lastname"]."<br>";
-    }
-?>
+        <?php
+            require('class/User.php');
+            $object = new User();
+            $list=$object->getAll();
+            $sizeList=count($list);
+
+
+            for ($i = 0; $i < $sizeList; $i++) {
+                echo "<p class='name-users'>".$list[$i]["id"]." ".$list[$i]["login"]." ".$list[$i]["firstname"]." ".$list[$i]["lastname"]."</p>"."<br>";
+            }
+        ?>
+    </main>
 </body>
 <script defer src="scriptDesign.js"></script>
 

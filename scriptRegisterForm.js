@@ -6,19 +6,21 @@ if (insForm){
     insForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     let form = new FormData(event.target);
-
-    let url = 'inscription.php';
-
+    let url = 'traitement-inscription.php';
     let request = new Request(url, {
         method: 'POST',
         body: form
     });
     let response = await fetch(request);
-    let responseData = await response.text();
-
-    console.log(`form => `, form);
-    console.log(`responseData => `, responseData);
-    
-
+    console.log("request",request);
+    let responseData = await response.json();
+    console.log(responseData);
+    if (responseData==='{"success":true}'){
+        console.log("Vous êtes enregistré")
+    }
+    if (responseData==='{"success":false}'){
+        console.log("Ce nom d'utilisateur existe déjà !")
+    }
     });
+    
 }

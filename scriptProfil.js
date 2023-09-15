@@ -1,7 +1,16 @@
 console.log('script profil ok');
+let toast=document.getElementById("toast-screen");
+let word="rien";
+toast.innerHTML=word;
+
+function displayToast($message){
+    toast.innerHTML=$message;
+    toast.style.display = "block";
+}
 
 let loginForm = document.getElementById('form-login');
 if (loginForm){
+
     loginForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     let form = new FormData(event.target);
@@ -18,10 +27,12 @@ if (loginForm){
     let responseData = await response.json();
     console.log(responseData);
     if (responseData==='{"success":true}'){
-        console.log("Vous avez changé votre login avec succès")
+        $message="Vous avez changé le login avec succès !"
+        displayToast($message);
     }
     if (responseData==='{"success":false}'){
-        console.log("Ce nom d'utilisateur existe déjà !")
+        $message="Ce login existe déjà";
+        displayToast($message);
     }
     });
 }
@@ -32,19 +43,23 @@ if (firstnameForm){
     firstnameForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     let form = new FormData(event.target);
-    let url = 'profil.php';
+    let url = 'traitement.php';
     let request = new Request(url, {
         method: 'POST',
         body: form
     });
     let response = await fetch(request);
-    let responseData = await response.text();
-    console.log(`form => `, form);
-    console.log(`response => `, response);
-    console.log(`response ok => `, response.ok);
-    if (response.ok===true){
-        console.log("Vous avez changé votre prénom avec succès")
-    }
+    console.log("request",request);
+    let responseData = await response.json();
+    console.log(responseData);
+        if (responseData==='{"success":true}'){
+            $message="Vous avez changé le prénom avec succès !"
+            displayToast($message);
+        }
+        if (responseData==='{"success":false}'){
+            $message="Erreur inconnue"
+            displayToast($message);
+        }
     });
 }
 
@@ -53,19 +68,21 @@ if (lastnameForm){
     lastnameForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     let form = new FormData(event.target);
-    let url = 'profil.php';
+    let url = 'traitement.php';
     let request = new Request(url, {
         method: 'POST',
         body: form
     });
     let response = await fetch(request);
-    let responseData = await response.text();
-    console.log(`form => `, form);
-    console.log(`response => `, response);
-    console.log(`response ok => `, response.ok);
-    if (response.ok===true){
-        console.log("Vous avez changé votre nom avec succès")
-    }
+    console.log("request",request);
+    let responseData = await response.json();
+    console.log(responseData);
+    if (responseData==='{"success":true}'){
+        $message="Vous avez changé le nom avec succès !"
+        displayToast($message);    }
+    if (responseData==='{"success":false}'){
+        $message="Erreure inconnue"
+        displayToast($message);    }
     });
 }
 
@@ -74,7 +91,7 @@ if (passwordForm){
     passwordForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     let form = new FormData(event.target);
-    let url = 'profil.php';
+    let url = 'traitement.php';
     let request = new Request(url, {
         method: 'POST',
         body: form

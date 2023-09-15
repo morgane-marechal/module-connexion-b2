@@ -20,15 +20,18 @@ class User{
                     'login' => htmlspecialchars($login),
                     'prenom' => htmlspecialchars($prenom),
                     'nom' => htmlspecialchars($nom),
-                    'password' => $password
+                    'password' =>password_hash($password, PASSWORD_DEFAULT)
                 ]);
                 if ($sql_exe) {
-                    return true;
+                    return json_encode(array("success" => true));
+                    
                 } else {
-                    return false;
+                    return json_encode(array("success" => false));
+
                 }
             } else {
-                return false;
+                return json_encode(array("success" => false));
+
             }
         }
 
@@ -51,22 +54,26 @@ class User{
     }
 
     public function connexion($login, $password){
+        $hashPassword=$this->getPassword($login);
+        if (password_verify($password, $hashPassword)){
             $sql = "SELECT * 
                     FROM user
-                    WHERE login = :login AND password = :password";
+                    WHERE login = :login";
             $sql_exe = $this->db->prepare($sql);
             $sql_exe->execute([
                 'login' => $login,
-                'password' => $password
             ]);
             $results = $sql_exe->fetch(PDO::FETCH_ASSOC);
             if ($results) {
                 $getId=$this->getId($login);
                 $_SESSION["id"]=$getId[0]["id"];
                 $_SESSION["login"]=$login;
+                //var_dump($_SESSION);
+               //return json_encode(array("success" => true, "id" => $_SESSION["id"], "login" => $_SESSION["login"]));
             } else {
-                return false;
+                return json_encode(array("success" => false));
             }
+        }
     }
 
     public function getAll(){
@@ -93,6 +100,16 @@ class User{
         ]);
         $result = $displayUsers->fetchAll(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    public function getPassword($login){
+        $displayUsers = $this->db->prepare("SELECT password FROM user WHERE login = :login");
+        $displayUsers->execute([
+            'login' => $login,
+        ]);
+        $result = $displayUsers->fetchAll(PDO::FETCH_ASSOC);
+        //echo $result[0]['password'];
+        return $result[0]['password'];
     }
 
     public function setLogin($id, $login){

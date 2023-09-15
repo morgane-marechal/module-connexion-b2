@@ -35,7 +35,10 @@
         </div>
     </form>
 
+    <?php //var_dump($_SESSION);?>
+
     <?php
+    /*
         require('class/User.php');
         $login=$_POST['login'];
         $password=$_POST['password'];
@@ -44,10 +47,13 @@
         $newLog = new User();
         $newLog->connexion($login, $password);
         header("Location: index.php");
-    }
+        }
+    */
     ?>
 
 </body>
 <script defer src="scriptDesign.js"></script>
+<script defer src="scriptConnexion.js"></script>
+
 
 </html>

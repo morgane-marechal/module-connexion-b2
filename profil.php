@@ -143,6 +143,7 @@ if(($goodPatternPassword===true)&&($samePasswords===true)){
     <div class="message-info">
         <?= $messageInfo ?>
     </div>
+    <div id="toast-screen">Hello</div>
 
 <script defer src="scriptProfil.js"></script>
 <script defer src="scriptDesign.js"></script>

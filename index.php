@@ -14,6 +14,7 @@
     <?php require('header.php');?>
 
     <h1>Bienvenue sur notre site web</h1>
+    <?php //var_dump($_SESSION);?>
 
     <!-- <button id="inscription-button" class="call-form-btn">Inscription</button>
     <button id="connexion-button" class="call-form-btn">Connexion</button> -->

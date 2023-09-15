@@ -17,6 +17,7 @@
     <?php require('header.php');?>
 
     <h1>Vous êtes déconnectés</h1>
+    <?php header("Location: index.php");?>
     <div id="forms-space"></div>
 </body>
 <script defer src="script.js"></script>
