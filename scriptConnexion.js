@@ -1,4 +1,15 @@
-console.log("script connexion form OK");
+console.log('script profil ok');
+let toast=document.getElementById("toast-screen");
+let word="rien";
+toast.innerHTML=word;
+
+function displayToast($message){
+    toast.innerHTML=$message;
+    toast.style.display = "block";
+    setTimeout(() => {
+        toast.style.display = "none";
+    }, "1000");
+}
 
 let connectForm = document.getElementById('form-connexion');
 
@@ -12,12 +23,13 @@ if (connectForm){
         body: form
     });
     let response = await fetch(request);
-    console.log("request",request);
+    //console.log("request",request);
     let responseData = await response.text();
-    window.location.href = 'profil.php';
     console.log(responseData);
     if (responseData==='{"success":true}'){
-        console.log("Vous êtes connecté")
+        console.log("Vous êtes connecté");
+        $message="Vous êtes connecté";
+        displayToast($message);
     }
     if (responseData==='{"success":false}'){
         console.log("Vous n'êtes pas connecté !")

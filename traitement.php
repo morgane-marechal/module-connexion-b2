@@ -41,32 +41,31 @@ if($_POST['lastname']){
 
 }
 
-$password=$_POST['password'];
-$checkPassword=$_POST['password-check'];
-$pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/";
 
 
-//check pattern password
-if (preg_match($pattern, $password)){
-    $goodPatternPassword=true;
+if($_POST['password']){
+    $password=$_POST['password'];
+    $checkPassword=$_POST['password-check'];
+    $pattern="/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/";
 
+    //check pattern password
+    if (preg_match($pattern, $password)){
+        $goodPatternPassword=true;
+    }else{
+        echo json_encode(array("success" => "bad pattern"));
+    }
+
+    if($password===$checkPassword){
+        $samePasswords=true;
+    }else{
+        echo json_encode(array("success" => "diff MP"));
+    }
+
+    if(($goodPatternPassword===true)&&($samePasswords===true)){
+        $newPassword = new User();
+        $success = $newPassword->setPassword($id, $password);
+        echo json_encode($success);
+    }
 }
 
-if($password===$checkPassword){
-    $samePasswords=true;
-
-}else{
-    $message_same_password= "Les deux mot de passe sont différents";
-    echo $message_same_password;
-}
-
-if(($goodPatternPassword===true)&&($samePasswords===true)){
-    $newPassword = new User();
-    $success = $newPassword->setPassword($id, $password);
-    echo json_encode($success);
-
-    
-    // $messageInfo="Vous avez changé votre mot de passe";
-    // header("Location: profil.php");
-}
 ?>

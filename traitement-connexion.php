@@ -10,12 +10,7 @@
        if((isset($login))&&(isset($password))){
         $newLog = new User();
         $success = $newLog->connexion($login, $password);
-        header("Location: profil.php");
         //echo json_encode($success);
-
-        //var_dump($_SESSION);
-        //if ($_SESSION['id']!=null){ 
-        
-        //};
+        header("refresh: 1;");
     }
     ?>

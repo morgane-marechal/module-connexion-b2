@@ -30,17 +30,28 @@ body{
 }
 
 /* SPLASH SCREEN */
-
+#content-toast{
+        position: fixed;
+        top: 80%;
+        width: 50%;
+        z-index: 1000;
+}
 #toast-screen{
-    display:block;
-    background-color: rgb(213, 154, 81, 0.5);
-    width:150px;
+    display:none;
+    background-color: rgb(213, 154, 81, 0.4);
+    border-radius:15px;
+    box-shadow: rgba(21, 178, 165, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;    
     height:fit-content;
     position: absolute;
-    top: 80%; left: 80%;
+    top: 80%;
+    left: 40%;
+    right:40%;
     text-align: center;
     font-family: 'Dosis', sans-serif;
-    color:white;
+    font-family: 2.4rem;
+    padding:1%;
+    font-weight: 900;
+    color:rgb(75, 43, 18);
 }
 
 

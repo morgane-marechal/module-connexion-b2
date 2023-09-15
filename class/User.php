@@ -68,6 +68,7 @@ class User{
                 $getId=$this->getId($login);
                 $_SESSION["id"]=$getId[0]["id"];
                 $_SESSION["login"]=$login;
+                header('Location: profil.php');
                 //var_dump($_SESSION);
                //return json_encode(array("success" => true, "id" => $_SESSION["id"], "login" => $_SESSION["login"]));
             } else {
@@ -161,7 +162,7 @@ class User{
         $setPassword = $this->db->prepare("UPDATE user SET password = :password WHERE id = :id");
         $setPassword->execute([
             'id' => $id,
-            'password' => $password,
+            'password' =>password_hash($password, PASSWORD_DEFAULT)
         ]);
         if ($setPassword) {
             return json_encode(array("success" => true));

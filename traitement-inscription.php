@@ -32,8 +32,8 @@ require('class/User.php');
 
         if((isset($login))&&(isset($lastname))&&(isset($firstname))&&($goodPatternPassword===true)&&($samePasswords===true)){
             $register = new User();
-           echo $register->register($login, $firstname, $lastname, $password);
-            //json_encode($register);
+            $success = $register->register($login, $firstname, $lastname, $password);
+            echo json_encode($success);
             //header("Location: connexion.php");
         }
     }

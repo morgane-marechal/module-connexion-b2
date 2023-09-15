@@ -12,11 +12,12 @@ if (insForm){
         body: form
     });
     let response = await fetch(request);
-    console.log("request",request);
+    //console.log("request",request);
     let responseData = await response.json();
     console.log(responseData);
     if (responseData==='{"success":true}'){
         console.log("Vous êtes enregistré")
+        window.location.href = "connexion.php";
     }
     if (responseData==='{"success":false}'){
         console.log("Ce nom d'utilisateur existe déjà !")
