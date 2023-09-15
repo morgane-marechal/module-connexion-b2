@@ -16,10 +16,13 @@
 
 require('class/User.php');
 $object = new User();
-var_dump($object);
+//var_dump($object);
 
-echo $object->register("HMagix", "Loulou", "Magic", "azerty13");
+//echo $object->register("HMagix", "Loulou", "Magic", "azerty13");
 
+$MP = $object->getPassword('Harald');
+//var_dump($MP);
+echo "<br>";
 
 
 

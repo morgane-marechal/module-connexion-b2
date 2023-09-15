@@ -9,6 +9,7 @@
             content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css"/>
         <meta http-equiv="x-ua-compatible" content="IE=edge"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
         <title>Inscription</title>
     </head>
 
@@ -32,15 +33,16 @@
             </div>
             <div class="module-form">
                 <label for="password">Mot de passe: </label>
+                <p style="margin: 0px 0px 30px 0px;"><small>Minimum de huit caractères, avec une majuscule, un chiffre et un caractère spécial</small></p>
+
                 <input type="password" name="password" id="password" required />
-                <p><small>Le mot de passe doit être au minimum de huit caractères, avec une majuscule, un chiffre et un caractère spécial au minimum.</small></p>
             </div>
             <div class="module-form">
                 <label for="password">Vérifier le mot de passe: </label>
                 <input type="password" name="password-check" id="password-check" required />
             </div>
             <div class="module-form">
-                <input type="submit" value="Soumettre" />
+                <input class="submit" type="submit" value="Soumettre" />
             </div>
         </form>
 
@@ -49,7 +51,7 @@
     // --------------Traitement logique du formulaire-------------
     // check for elements
 
-
+/*
 
     require('class/User.php');
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -83,18 +85,20 @@
 
         if((isset($login))&&(isset($lastname))&&(isset($firstname))&&($goodPatternPassword===true)&&($samePasswords===true)){
             $register = new User();
-            $register->register($login, $firstname, $lastname, $password);
-            json_encode($register);
+           echo $register->register($login, $firstname, $lastname, $password);
+            //json_encode($register);
             //header("Location: connexion.php");
         }
     }
 
 
-
+*/
 
 
     ?>
     </body>
         <script defer src="scriptRegisterForm.js"></script>
+        <script defer src="scriptDesign.js"></script>
+
 
 </html>

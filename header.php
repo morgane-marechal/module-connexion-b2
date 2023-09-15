@@ -1,10 +1,9 @@
 <?php ?>
 <header>
-<button id="menuButton"><span  class="material-icons">menu</span></button>
+<button id="menuButton"><span class="material-symbols-outlined">menu</span></button>
 
             <nav>
             <button role="icon-button">X</button>
-                <!-- <li><img class="logo" alt="logo" src="logo_cinetech.png" /> -->
                 <li ><a href="index.php" class="menuLink">Accueil</a></li>
             <?php if (empty($_SESSION['id'])){ ?>
                 <li><a href="inscription.php" class="menuLink">S'enregistrer</a></li>

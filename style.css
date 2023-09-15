@@ -10,8 +10,16 @@ h1{
     font-family: 'Dosis', sans-serif;
     text-align: center;
     color: rgb(213, 154, 81);
-    font-family: 'Courier New', Courier, monospace;
     font-size: 1.2rem;
+}
+
+#admin-bloc{
+    font-family: 'Dosis', sans-serif;
+
+}
+
+.name-users{
+    margin:0;
 }
 
 body{
@@ -19,6 +27,31 @@ body{
     flex-direction: column;
     align-items: center;
     width:100%;
+}
+
+/* SPLASH SCREEN */
+#content-toast{
+        position: fixed;
+        top: 80%;
+        width: 50%;
+        z-index: 1000;
+}
+#toast-screen{
+    display:none;
+    background-color: rgb(213, 154, 81, 0.4);
+    border-radius:15px;
+    box-shadow: rgba(21, 178, 165, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;    
+    height:fit-content;
+    position: absolute;
+    top: 80%;
+    left: 40%;
+    right:40%;
+    text-align: center;
+    font-family: 'Dosis', sans-serif;
+    font-family: 2.4rem;
+    padding:1%;
+    font-weight: 900;
+    color:rgb(75, 43, 18);
 }
 
 
@@ -37,17 +70,18 @@ nav {
     flex-direction: column;
     align-items: center;
     z-index: 10;
-    background: rgba(0,0,0,0.9);
+    color:white;
+    background: rgba(102, 94, 85, 0.9);
 }
 
 nav > li:not([role="icon-button"]) {
     background: none;
     outline: none;
     border: none;
-    color: rgb(80, 76, 66);
-    font-size: 1.5rem;
+    color: rgb(0, 0, 0);
+    font-size: 1.9rem;
     line-height: 3rem;
-    margin: 0.5rem 0;
+    margin: 2rem 0;
     list-style-type: none;
 }
 
@@ -58,13 +92,14 @@ nav > li:not([role="icon-button"]) a{
 
 }
 
+
 [hidden] {
     display: none !important;
-}
+} 
 
 #menuButton {
     background: none;
-    color: white;
+    color: rgb(0, 0, 0);
     border: 0;
     font-size: 60px;
     width: 60px;
@@ -82,33 +117,117 @@ nav > button[role="icon-button"] {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    color: var(--grad-favorite);
+    color:rgb(84, 76, 65);
     font-weight: bold;
     font-size: 2rem;
     position: absolute;
     left: 1rem;
     z-index: 20;
+    border:none;
 }
 
 nav > li[role="icon-button"]:hover {
     background: white;
-    color: rgb(215, 33, 235);
 }
+
+input{
+    width:90%;
+    margin:1%0%3%0%;
+    height:40px;
+    border:none;
+    border-style:none;
+    border-bottom: 2px solid rgba(164,113,75,0.33);;
+}
+
+input:hover{
+    border-style:none;
+    border-bottom: 2px solid rgba(219, 125, 54, 0.33);
+    outline: none;
+}
+
+
+input:focus{
+    border-top:none;
+    outline: none;
+    background-color: rgba(239, 191, 170, 0.2);
+}
+
+.submit{
+    font-family: 'Dosis', sans-serif;
+    font-size: 1.2rem;
+    background-color: rgba(239, 191, 170, 0.2);
+    border:none;
+}
+
+
 
 /* MOBILE FIRST */
 @media (max-width: 460px) {
 
+                /* 
+            ***** MOBILE VERSION FIRST ****
+            */
 
-    main{
+    body{
         width:100%;
         font-family: 'Dosis', sans-serif;
     }
 
+    /* nav{
+        display:none;
+    }  */
 
+    nav > li:not([role="icon-button"]) {
+        background: none;
+        outline: none;
+        border: none;
+        color: rgb(255, 255, 255);
+        font-size: 1.9rem;
+        line-height: 3rem;
+        margin: 0.5rem 0;
+        list-style-type: none;
+    }
 
-            /* 
-            ***** MOBILE VERSION FIRST ****
-            */
+    form{
+        display:flex;
+        flex-direction: column;
+        width:80%;
+        margin:1%0%;
+        padding:20px;
+        margin:60px 0px 50px 0px;
+
+        /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+        box-shadow: rgba(98, 133, 154, 0.2) 0px 30px 20px -7px;
+        font-family: 'Dosis', sans-serif;
+        letter-spacing: 0.05rem;
+    }
+
+    input{
+        width:90%;
+        margin:1%0%3%0%;
+        height:40px;
+        border-style:none;
+        border-bottom: 2px solid rgba(164,113,75,0.33);
+    }
+
+    input:focus{
+        width:90%;
+        margin:1%0%3%0%;
+        height:40px;
+        border-style:none;
+        outline: none;
+        border-bottom: 2px solid rgba(164,113,75,0.33);
+    }
+
+    input:active{
+        width:90%;
+        margin:1%0%3%0%;
+        height:40px;
+        border-style:none;
+        outline: none;
+        border-bottom: 1px solid rgba(164,113,75,0.33);
+    }
+
 
 
 }
@@ -150,7 +269,8 @@ nav > li[role="icon-button"]:hover {
             font-family: var(--police-title);
             font-weight: 900;
             letter-spacing:0.1em;
-            margin-right:2%;    
+            margin-right:2%;
+            color:rgb(78, 75, 77);   
         }
 
 
@@ -169,22 +289,13 @@ nav > li[role="icon-button"]:hover {
             font-size: 48px;
             display: none;
         }
+
+        #menuButton {
+            display:none;
+        }
     
     
-        button::before{
-            content: "";
-            position: absolute;
-            bottom:0px; 
-            width: 13%;
-            height:2px;
-            transform: scaleX(0);
-            transition: transform 0.3s ease-in-out; 
-            transform-origin: center;
-        }
-        
-        button:hover::before{
-            transform:scaleX(1);
-        }
+
     
 
         /* HOME PAGE */
@@ -205,13 +316,43 @@ nav > li[role="icon-button"]:hover {
 
     /* update form css */
     form{
-
         display:flex;
         flex-direction: column;
-        margin:1%0%;
+        width:50%;
+        margin:60px 0px 50px 0px;
         padding:20px;
         /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
         box-shadow: rgba(98, 133, 154, 0.2) 0px 60px 40px -7px;
+        font-family: 'Dosis', sans-serif;
+        letter-spacing: 0.05rem;
+    }
+
+    input{
+        width:90%;
+        margin:1%0%3%0%;
+        height:40px;
+        border-style:none;
+        border-bottom: 2px solid rgba(164,113,75,0.33);;
+    }
+
+    input:hover{
+        border-style:none;
+        outline: none;
+        border-bottom: 2px solid rgba(219, 125, 54, 0.33);
+    }
+
+
+    input:focus{
+        border-style:none;
+        outline: none;
+        background-color: rgba(239, 191, 170, 0.2);
+    }
+
+
+
+    .module-form{
+        display: flex;
+        flex-direction: column;
     }
 
 

@@ -20,15 +20,18 @@ class User{
                     'login' => htmlspecialchars($login),
                     'prenom' => htmlspecialchars($prenom),
                     'nom' => htmlspecialchars($nom),
-                    'password' => $password
+                    'password' =>password_hash($password, PASSWORD_DEFAULT)
                 ]);
                 if ($sql_exe) {
-                    return true;
+                    return json_encode(array("success" => true));
+                    
                 } else {
-                    return false;
+                    return json_encode(array("success" => false));
+
                 }
             } else {
-                return false;
+                return json_encode(array("success" => false));
+
             }
         }
 
@@ -51,22 +54,27 @@ class User{
     }
 
     public function connexion($login, $password){
+        $hashPassword=$this->getPassword($login);
+        if (password_verify($password, $hashPassword)){
             $sql = "SELECT * 
                     FROM user
-                    WHERE login = :login AND password = :password";
+                    WHERE login = :login";
             $sql_exe = $this->db->prepare($sql);
             $sql_exe->execute([
                 'login' => $login,
-                'password' => $password
             ]);
             $results = $sql_exe->fetch(PDO::FETCH_ASSOC);
             if ($results) {
                 $getId=$this->getId($login);
                 $_SESSION["id"]=$getId[0]["id"];
                 $_SESSION["login"]=$login;
+                header('Location: profil.php');
+                //var_dump($_SESSION);
+               //return json_encode(array("success" => true, "id" => $_SESSION["id"], "login" => $_SESSION["login"]));
             } else {
-                return false;
+                return json_encode(array("success" => false));
             }
+        }
     }
 
     public function getAll(){
@@ -95,20 +103,32 @@ class User{
         return $result;
     }
 
+    public function getPassword($login){
+        $displayUsers = $this->db->prepare("SELECT password FROM user WHERE login = :login");
+        $displayUsers->execute([
+            'login' => $login,
+        ]);
+        $result = $displayUsers->fetchAll(PDO::FETCH_ASSOC);
+        //echo $result[0]['password'];
+        return $result[0]['password'];
+    }
+
     public function setLogin($id, $login){
         if (!$this->verifUser($login)) {
-        $setLogin = $this->db->prepare("UPDATE user SET login = :login WHERE id = :id");
+            $setLogin = $this->db->prepare("UPDATE user SET login = :login WHERE id = :id");
+
         $setLogin->execute([
             'id' => $id,
             'login' => $login,
         ]);
-        if ($setLogin) {
-            return true;
+            if ($setLogin) {
+                return json_encode(array("success" => true));
+            }else{
+                return json_encode(array("success" => false));
+            }
         }else{
-            return false;
-        }
-        }else{
-            return false;
+            return json_encode(array("success" => false));
+
         }
     }
 
@@ -119,7 +139,9 @@ class User{
             'firstname' => $firstname,
         ]);
         if ($setFirstname) {
-            return true;
+            return json_encode(array("success" => true));
+        }else{
+            return json_encode(array("success" => false));
         }
     }
 
@@ -130,7 +152,9 @@ class User{
             'lastname' => $lastname,
         ]);
         if ($setLastname) {
-            return true;
+            return json_encode(array("success" => true));
+        }else{
+            return json_encode(array("success" => false));
         }
     }
 
@@ -138,10 +162,12 @@ class User{
         $setPassword = $this->db->prepare("UPDATE user SET password = :password WHERE id = :id");
         $setPassword->execute([
             'id' => $id,
-            'password' => $password,
+            'password' =>password_hash($password, PASSWORD_DEFAULT)
         ]);
         if ($setPassword) {
-            return true;
+            return json_encode(array("success" => true));
+        }else{
+            return json_encode(array("success" => false));
         }
     }
 
