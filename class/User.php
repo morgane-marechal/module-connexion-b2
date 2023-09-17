@@ -68,9 +68,9 @@ class User{
                 $getId=$this->getId($login);
                 $_SESSION["id"]=$getId[0]["id"];
                 $_SESSION["login"]=$login;
-                header('Location: profil.php');
+                //header('Location: profil.php');
                 //var_dump($_SESSION);
-               //return json_encode(array("success" => true, "id" => $_SESSION["id"], "login" => $_SESSION["login"]));
+               return json_encode(array("success" => true));
             } else {
                 return json_encode(array("success" => false));
             }
